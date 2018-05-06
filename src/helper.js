@@ -30,16 +30,16 @@ export default class DistrictRepository {
       return undefined;
     }
 
-    const upperCaseName = district.toUpperCase();
-    if (!this.stats[upperCaseName]) {
+    const upperCaseDistrict = district.toUpperCase();
+    if (!this.stats[upperCaseDistrict]) {
       return undefined;
     } 
 
-    const dataObj = Object.assign({}, ...this.stats[upperCaseName].map(data => data));
-    return Object.assign({}, {stats: dataObj, location: upperCaseName}); 
+    const dataObj = Object.assign({}, ...this.stats[upperCaseDistrict].map(data => data));
+    return Object.assign({}, {stats: dataObj, location: upperCaseDistrict}); 
   }
 
-  findAllMatches = (district) => {
+  findAllMatches = (userInput) => {
     const statsKeys = Object.keys(this.stats);
     const allDistrictData = statsKeys.map(district => {
       return { [district]: this.stats[district], 
@@ -47,10 +47,10 @@ export default class DistrictRepository {
       }
     });
 
-    if (!district) {
+    if (!userInput) {
       return allDistrictData; 
     } else {
-      const upperCaseDistrict = district.toUpperCase();
+      const upperCaseDistrict = userInput.toUpperCase();
       return allDistrictData.filter(districtObj => Object.keys(districtObj)[0].includes(upperCaseDistrict));
     }
 
@@ -59,7 +59,7 @@ export default class DistrictRepository {
   findAverage = (district) => {
     const districtData = this.findByName(district); 
     const dataValues = Object.values(districtData.stats)
-    const dataSum = dataValues.reduce((dataSum, num, array) => dataSum + num, 0)
+    const dataSum = dataValues.reduce((dataSum, num) => dataSum + num, 0)
     const average = parseFloat((dataSum / dataValues.length).toFixed(3));
 
     return average; 
