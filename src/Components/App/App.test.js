@@ -9,18 +9,17 @@ import CardContainer from '../CardContainer/CardContainer.js';
 const repoHelper = new DistrictRepository(data);
 
 describe('App', () => {
+  let app;
 
-  it('renders without crashing', () => {
-    shallow(<App />);
+  beforeEach(() => {
+    app = shallow(<App />);
   })
 
   it('it should have a default state of DistrictRepository', () => {
-    const app = shallow(<App />);
     expect(app.state('repo')).toEqual(repoHelper.findAllMatches());
   })
 
   it('should render CardContainer with the correct Props', () => {
-    const app = shallow(<App />);
     expect(app.find(CardContainer).props()['repo']).toEqual(app.state('repo'));
   })
 

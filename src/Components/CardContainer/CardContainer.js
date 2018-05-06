@@ -27,7 +27,9 @@ const CardContainer = ({ repo, addCompareCard, removeCompareCard }) => {
 }
 
 CardContainer.propTypes = {
-  repo: PropTypes.array.isRequired
+  repo: PropTypes.arrayOf(PropTypes.object).isRequired,
+  addCompareCard: PropTypes.func.isRequired,
+  removeCompareCard: PropTypes.func.isRequired
 }
 
 export default CardContainer; 

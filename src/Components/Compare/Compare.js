@@ -47,7 +47,9 @@ const Compare = ({ compareCards, compareData, removeCompareCard }) => {
 }
 
 Compare.propTypes = {
-  compareCards: PropTypes.array.isRequired
+  compareCards: PropTypes.arrayOf(PropTypes.object).isRequired,
+  compareData: PropTypes.object,
+  removeCompareCard: PropTypes.func.isRequired
 }
 
 export default Compare;
