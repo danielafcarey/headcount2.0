@@ -6,9 +6,9 @@ import renderer from 'react-test-renderer';
 
 describe('Search', () => {
 
-  it('renders without crashing', () => {
-    const updateRepoInStateMock = jest.fn()
-    shallow(<Search updateRepoInState={ updateRepoInStateMock } />)
+  it('matches the snapshot', () => {
+    const searchSnapshot = renderer.create(<Search updateRepoInState={ jest.fn() } />);
+    
+    expect(searchSnapshot).toMatchSnapshot();
   })
-
 })
