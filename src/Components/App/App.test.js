@@ -10,15 +10,19 @@ const repoHelper = new DistrictRepository(data);
 
 describe('App', () => {
 
-  it('it should have a default state of DistrictRepository', () => {
+  it('it should have a default state of repo that includes all district data, compareCards as empty array, and compareData as null', () => {
     const app = shallow(<App />);
+
     expect(app.state('repo')).toEqual(repoHelper.findAllMatches());
-  })
+    expect(app.state('compareCards')).toEqual([]);
+    expect(app.state('compareData')).toEqual(null);
+  });
   
   it('should match the snapshot', () => {
     const appSnapshot = renderer.create(<App />).JSON;
+
     expect(appSnapshot).toMatchSnapshot();
-  })
+  });
 
   it('updates the repo in state when given a new search value', () => {
     const mockValue = 'MEEKER RE1';
@@ -38,12 +42,13 @@ describe('App', () => {
         ],
         selected: false
       }
-    ] 
-    const app = shallow(<App />)
+    ]; 
+    const app = shallow(<App />);
+
     app.instance().updateRepoInState(mockValue);
 
     expect(app.state('repo')).toEqual(expectedRepoState);
-  })
+  });
 
   it('updates the compareData in state when two cards have been added to compareCards', () => {
     const app = shallow(<App />);
@@ -78,17 +83,18 @@ describe('App', () => {
         ],
         selected: false
       }
-    ]
-    app.setState({ compareCards: mockCompareCards })
+    ];
     const expectedCompareData = {
       'MEEKER RE1': 0.08,
       'AGUILAR REORGANIZED 6': 1,
       compared: 0.08
-    }
+    };
+
+    app.setState({ compareCards: mockCompareCards })
     app.instance().getCompareData();
 
     expect(app.state('compareData')).toEqual(expectedCompareData);
-  })
+  });
 
   it('updates compareCards in state when a card has been selected', () => {
     const app = shallow(<App />);
@@ -109,10 +115,11 @@ describe('App', () => {
         selected: true 
       }
     ];
+
     app.instance().addCompareCard('AGUILAR REORGANIZED 6')
 
     expect(app.state('compareCards')).toEqual(expectedCompareCards);
-  })
+  });
 
   it('updates selected value on card in repo in state when a card has been selected', () => {
     const app = shallow(<App />);
@@ -122,8 +129,9 @@ describe('App', () => {
     expect(matchingCard.selected).toEqual(false);
     
     app.instance().changeSelectedInState(selectedTitle);
+
     expect(matchingCard.selected).toEqual(true);
-  })
+  });
 
   it('removes a card from compareCards in state', () => {
     const app = shallow(<App />);
@@ -145,11 +153,13 @@ describe('App', () => {
         selected: true 
       }
     ];
+
     app.setState({ compareCards: compareCardsInitialState })
 
     app.instance().removeCompareCard('AGUILAR REORGANIZED 6');
+
     expect(app.state('compareCards')).toEqual(expectedResult);
-  })
+  });
 
 })
 

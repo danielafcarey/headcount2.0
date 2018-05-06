@@ -17,46 +17,51 @@ class App extends Component {
     };
   }
 
-  updateRepoInState = (value) => {
-    let filteredDistricts = repoHelper.findAllMatches(value);
+  updateRepoInState = (userInput) => {
+    const filteredDistricts = repoHelper.findAllMatches(userInput);
+    
     this.setState({ repo: filteredDistricts });
+  }
+
+  addCompareCard = (districtTitle) => {
+    if(this.state.compareCards.length < 2) {
+      const matchingDistrict = this.state.repo.find(district => {
+        return Object.keys(district)[0] === districtTitle; 
+      }); 
+
+      this.setState({ compareCards: [...this.state.compareCards, matchingDistrict] }, this.getCompareData);
+      this.changeSelectedInState(districtTitle);
+    }
   }
 
   getCompareData = () => {
     if(this.state.compareCards.length === 2) {
-      const comparison = repoHelper.compareDistrictAverages(Object.keys(this.state.compareCards[0])[0], Object.keys(this.state.compareCards[1])[0])
-      this.setState({compareData: comparison})
+      const district1Title = Object.keys(this.state.compareCards[0])[0];
+      const district2Title = Object.keys(this.state.compareCards[1])[0];
+      const compareData = repoHelper.compareDistrictAverages(district1Title, district2Title);
+
+      this.setState({ compareData });
     }
   }
 
-  addCompareCard = (title) => {
-    if(this.state.compareCards.length < 2) {
-      const matchingDistrict = this.state.repo.find(district => {
-        return Object.keys(district)[0] === title 
-      }) 
-      this.setState({compareCards: [...this.state.compareCards, matchingDistrict]}, this.getCompareData)
-      
-      this.changeSelectedInState(title);
-    }
-  }
-
-  changeSelectedInState = (title) => {
+  changeSelectedInState = (districtTitle) => {
     const newRepo = this.state.repo.map(district => {
-      if (Object.keys(district)[0] === title) {
+      if (Object.keys(district)[0] === districtTitle) {
         district.selected = !district.selected;
       }
       return district;
-    })
+    });
 
     this.setState({ repo: newRepo });
   }
 
-  removeCompareCard = (title) => {
+  removeCompareCard = (districtTitle) => {
     const newCompareCards = this.state.compareCards.filter(district => {
-      return Object.keys(district)[0] !== title
-    })
-    this.setState({compareCards: newCompareCards})
-    this.changeSelectedInState(title)
+      return Object.keys(district)[0] !== districtTitle;
+    });
+
+    this.setState({ compareCards: newCompareCards });
+    this.changeSelectedInState(districtTitle);
   }
 
   render() {
@@ -64,12 +69,12 @@ class App extends Component {
       <div className="page-background">
         <h1 className="header">Welcome To Headcount 2.0</h1>
         <Search updateRepoInState={ this.updateRepoInState } />
-        <Compare compareCards={this.state.compareCards}
-                  compareData={this.state.compareData} 
-                  removeCompareCard={this.removeCompareCard}/>
-        <CardContainer repo={ this.state.repo } 
-                       addCompareCard={this.addCompareCard}
-                       removeCompareCard={ this.removeCompareCard } /> 
+        <Compare  compareCards={ this.state.compareCards }
+                  compareData={ this.state.compareData } 
+                  removeCompareCard={ this.removeCompareCard }/>
+        <CardContainer  repo={ this.state.repo } 
+                        addCompareCard={ this.addCompareCard }
+                        removeCompareCard={ this.removeCompareCard } /> 
       </div>
     );
   }
