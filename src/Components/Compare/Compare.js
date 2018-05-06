@@ -32,18 +32,16 @@ const Compare = ({ compareCards, compareData, removeCompareCard }) => {
             <h3>{compared}</h3>
             <h3>{district2Title}: {district2Average}</h3>
           </div>
-        )
-   }
+      )
+    }
   }
 
   return (
     <div className="card-container compare-cards">
      {selectedCards}
-
      { createCompareCard() } 
-
     </div>
-    )
+  )
 }
 
 Compare.propTypes = {

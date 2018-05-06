@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CardContainer should match the snapshot with cards 1`] = `undefined`;
+
+exports[`CardContainer should match the snapshot with no cards 1`] = `undefined`;

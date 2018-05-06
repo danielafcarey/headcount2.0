@@ -5,21 +5,70 @@ import PropTypes from 'prop-types';
 import renderer from 'react-test-renderer';
 
 describe('Card', () => {
-  let card;
+  it('matches the snapshot when card is created in cardContainer section', () => {
+    const cardSnapshot = renderer.create(<Card selected={ false }
+                                               section=''
+                                               title='COLORADO'
+                                               listOfData={[{ '2009': 1 }]}
+                                               addCompareCard={ jest.fn() }
+                                               removeCompareCard={ jest.fn() }
+                                        />)
 
-  beforeEach(() => {
-    const mockTitleProp = 'DISTRICT';
-    const mockDataProp = [{ "2009": 0.986 }];
+    expect(cardSnapshot).toMatchSnapshot();
+  })
 
-    card = shallow(<Card title={ mockTitleProp } 
-                         listOfData={ mockDataProp } 
-                         removeCompareCard={ jest.fn() }
-                   />);
+  it('matches the snapshot when card is created in compare section', () => {
+    const cardSnapshot = renderer.create(<Card selected={ false }
+                                               section='compare'
+                                               title='COLORADO'
+                                               listOfData={[{ '2009': 1 }]}
+                                               addCompareCard={ jest.fn() }
+                                               removeCompareCard={ jest.fn() }
+                                        />)
+
+    expect(cardSnapshot).toMatchSnapshot();
 
   })
 
-  it('should render correct amount of listItems based on props passed', () => {
-    expect(card.find('li').length).toEqual(1);
+  it('matches the snapshot if a card is selected', () => {
+    const cardSnapshot = renderer.create(<Card selected={ true }
+                                               section=''
+                                               title='COLORADO'
+                                               listOfData={[{ '2009': 1 }]}
+                                               addCompareCard={ jest.fn() }
+                                               removeCompareCard={ jest.fn() }
+                                        />)
+
+    expect(cardSnapshot).toMatchSnapshot();
+
+  })
+
+  it('calls removeCompareCard if card is clicked in the compare section', () => {
+    const spy = jest.fn()
+    const card = shallow(<Card selected={ false }
+                               section='compare'
+                               title='COLORADO'
+                               listOfData={[{ '2009': 1 }]}
+                               addCompareCard={ jest.fn() }
+                               removeCompareCard={ spy }
+                        />)
+    card.simulate('click');
+
+    expect(spy).toHaveBeenCalled(); 
+  })
+
+  it('calls addCompareCard if card is clicked in the cardContainer section', () => {
+    const spy = jest.fn()
+    const card = shallow(<Card selected={ false }
+                               section=''
+                               title='COLORADO'
+                               listOfData={[{ '2009': 1 }]}
+                               addCompareCard={ spy }
+                               removeCompareCard={ jest.fn() }
+                        />)
+    card.simulate('click');
+
+    expect(spy).toHaveBeenCalled(); 
   })
 
 })
