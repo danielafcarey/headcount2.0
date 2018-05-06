@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card matches the snapshot if a card is selected 1`] = `
+<div
+  className="card selected"
+  onClick={[Function]}
+>
+  <h3
+    className="title"
+  >
+    COLORADO
+  </h3>
+  <ul
+    className="list-items"
+  >
+    <li
+      className="above"
+    >
+      2009: 1
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`Card matches the snapshot when card is created in cardContainer section 1`] = `
+<div
+  className="card "
+  onClick={[Function]}
+>
+  <h3
+    className="title"
+  >
+    COLORADO
+  </h3>
+  <ul
+    className="list-items"
+  >
+    <li
+      className="above"
+    >
+      2009: 1
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`Card matches the snapshot when card is created in compare section 1`] = `
+<div
+  className="card "
+  onClick={[Function]}
+>
+  <h3
+    className="title"
+  >
+    COLORADO
+  </h3>
+  <ul
+    className="list-items"
+  >
+    <li
+      className="above"
+    >
+      2009: 1
+    </li>
+  </ul>
+</div>
+`;
