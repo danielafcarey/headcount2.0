@@ -18,8 +18,11 @@ describe('Card', () => {
 
   })
 
-  it('should render correct amount of listItems based on props passed', () => {
-    expect(card.find('li').length).toEqual(1);
+  it('matches the snapshot when card is created in cardContainer section', () => {
+
   })
 
+  it('matches the snapshot when card is created in compare section', () => {
+
+  })
 })

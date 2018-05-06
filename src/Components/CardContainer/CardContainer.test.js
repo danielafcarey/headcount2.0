@@ -6,32 +6,25 @@ import renderer from 'react-test-renderer';
 import Card from '../Card/Card.js';
 
 describe('CardContainer', () => {
-  let cardContainer;
-  const mockProp = [{ 'DISTRICT': [{ "2009": 0.986 }],
-                      selected: false 
-                   }];
-
-  beforeEach(() => {
-    cardContainer = shallow(<CardContainer repo={ mockProp }
+  it('should match the snapshot with no cards', () => {
+    const cardContainerSnapshot = renderer.create(<CardContainer repo={ [] }
                                            addCompareCard={ jest.fn() }
                                            removeCompareCard={ jest.fn() }
-                            />)
+                                         />).JSON;
+
+    expect(cardContainerSnapshot).toMatchSnapshot();
   })
 
-  it('should render correct amount of card based on the props passed', () => {
-    expect(cardContainer.find(Card).length).toEqual(1);
-  })
+  it('should match the snapshot with cards', () => {
+    const mockProp = [{ 'DISTRICT': [{ "2009": 0.986 }],
+                      selected: false 
+                   }];
+    const cardContainerSnapshot = renderer.create(<CardContainer repo={ mockProp }
+                                           addCompareCard={ jest.fn() }
+                                           removeCompareCard={ jest.fn() }
+                                         />).JSON;
 
-  it('should render a card coponent with the correct props', () => {
-    const expected = { 
-      title: 'DISTRICT', 
-      listOfData: [{ "2009": 0.986 }], 
-      selected: false,
-      removeCompareCard: jest.fn(),
-      addCompareCard: jest.fn()
-    };
-
-    expect(cardContainer.find(Card).props()).toMatchObject(expected);
-  })
+    expect(cardContainerSnapshot).toMatchSnapshot();
+  }) 
 
 })

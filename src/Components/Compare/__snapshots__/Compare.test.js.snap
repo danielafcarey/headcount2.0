@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Compare matches the snapshot when one card is in compareCards prop 1`] = `undefined`;
+
+exports[`Compare matches the snapshot when two cards in compareCards prop 1`] = `undefined`;
+
+exports[`Compare matches the snapshot with no cards 1`] = `undefined`;
