@@ -39,8 +39,12 @@ const Card = ({ selected, section, title, listOfData, addCompareCard, removeComp
 }
 
 Card.propTypes = {
+  selected: PropTypes.bool.isRequired,
+  section: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired, 
-  listOfData: PropTypes.array.isRequired
+  listOfData: PropTypes.array.isRequired,
+  addCompareCard: PropTypes.func,
+  removeCompareCard: PropTypes.func.isRequired
 }
 
 export default Card;
