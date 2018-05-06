@@ -15,7 +15,6 @@ const CardContainer = ({ repo, addCompareCard, removeCompareCard }) => {
                  selected={ district.selected }
                  key={ `Card${index}` }
            />;
-
   });
 
   return (
@@ -23,13 +22,12 @@ const CardContainer = ({ repo, addCompareCard, removeCompareCard }) => {
       { cardList }
     </div>
   );
-
 }
 
 CardContainer.propTypes = {
   repo: PropTypes.arrayOf(PropTypes.object).isRequired,
   addCompareCard: PropTypes.func.isRequired,
   removeCompareCard: PropTypes.func.isRequired
-}
+};
 
 export default CardContainer; 

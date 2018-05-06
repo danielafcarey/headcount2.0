@@ -27,8 +27,7 @@ describe('Card', () => {
                                         />)
 
     expect(cardSnapshot).toMatchSnapshot();
-
-  })
+  });
 
   it('matches the snapshot if a card is selected', () => {
     const cardSnapshot = renderer.create(<Card selected={ true }
@@ -40,8 +39,7 @@ describe('Card', () => {
                                         />)
 
     expect(cardSnapshot).toMatchSnapshot();
-
-  })
+  });
 
   it('calls removeCompareCard if card is clicked in the compare section', () => {
     const spy = jest.fn()
@@ -55,7 +53,7 @@ describe('Card', () => {
     card.simulate('click');
 
     expect(spy).toHaveBeenCalled(); 
-  })
+  });
 
   it('calls addCompareCard if card is clicked in the cardContainer section', () => {
     const spy = jest.fn()
@@ -69,6 +67,6 @@ describe('Card', () => {
     card.simulate('click');
 
     expect(spy).toHaveBeenCalled(); 
-  })
+  });
 
 })
