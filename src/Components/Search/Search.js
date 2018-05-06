@@ -17,6 +17,6 @@ const Search = ({ updateRepoInState }) => {
 
 Search.propTypes = {
   updateRepoInState: PropTypes.func.isRequired
-}
+};
 
 export default Search;
