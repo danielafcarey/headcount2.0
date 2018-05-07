@@ -7,7 +7,7 @@ const Search = ({ updateRepoInState }) => {
     <div className="search-container">
       <input 
         placeholder="Search for a district..."
-        className="search"
+        className="search search-border"
         onChange={ (event) => updateRepoInState(event.target.value) }
       />
     </div>
