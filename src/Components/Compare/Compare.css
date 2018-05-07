@@ -1,14 +1,14 @@
 .compare-data {
-  background: url('../Images/compareImage.jpg');
-    -webkit-background-size: cover;
+  background: url('../../Images/compareImage.jpg');
+  -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  background-repeat: no-repeat;
   min-width: 40%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    background-repeat: no-repeat;
+  min-height: 100%;
+  width: auto;
+  height: auto;
 }
 
 .compareDataDesign {
@@ -32,4 +32,5 @@
 .font {
   font-family: 'Press Start 2P';
   font-size: small;
+  text-shadow: 1px 1px white;
 }

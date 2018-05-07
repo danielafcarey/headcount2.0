@@ -30,10 +30,14 @@ const Compare = ({ compareCards, compareData, removeCompareCard }) => {
       const compared = compareDataEntries[2][1];
 
       return (
-        <div className="card compare-data">
-          <h3 className='compareDataDesign compareSpace font'>{ district1Title }: { district1Average }</h3>
+        <div className='card compare-data'>
+          <h3 className='compareDataDesign compareSpace font'>
+            { district1Title }: { district1Average }
+          </h3>
           <h3 className='compare font'>{ compared }</h3>
-          <h3 className='compareDataDesign font'>{ district2Title }: { district2Average }</h3>
+          <h3 className='compareDataDesign font'>
+            { district2Title }: { district2Average }
+          </h3>
         </div>
       );
     }

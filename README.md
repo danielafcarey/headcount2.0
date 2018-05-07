@@ -10,7 +10,7 @@ Headcount 2.0 can be used with similar district data, so long as it is formatted
 
 ### *Example* 
 
-![main screen](https://user-images.githubusercontent.com/34175382/38843538-ab9e66cc-41ac-11e8-9043-a515795b4f31.png)
+![main screen](./src/Images/main.png)
 
 ---
 
