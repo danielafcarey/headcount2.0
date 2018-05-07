@@ -7,14 +7,16 @@ const Compare = ({ compareCards, compareData, removeCompareCard }) => {
     const title = Object.keys(district)[0];
     const listOfData = Object.values(district)[0]; 
 
-    return <Card title={ title }
-                listOfData={ listOfData }
-                section='compare'
-                removeCompareCard={ removeCompareCard }
-                selected={ district.selected }
-                key={ `compareCard${index}` }
-    />;
-
+    return (
+      <Card 
+        title={ title }
+        listOfData={ listOfData }
+        section='compare'
+        removeCompareCard={ removeCompareCard }
+        selected={ district.selected }
+        key={ `compareCard${index}` }
+      />
+    );
   });
 
   function createCompareCard() {
@@ -27,22 +29,22 @@ const Compare = ({ compareCards, compareData, removeCompareCard }) => {
       const compared = compareDataEntries[2][1];
 
       return (
-          <div className="card compare-data">
-            <h3>{ district1Title }: { district1Average }</h3>
-            <h3>{ compared }</h3>
-            <h3>{ district2Title }: { district2Average }</h3>
-          </div>
+        <div className="card compare-data">
+          <h3>{ district1Title }: { district1Average }</h3>
+          <h3>{ compared }</h3>
+          <h3>{ district2Title }: { district2Average }</h3>
+        </div>
       );
     }
   }
 
   return (
     <div className="card-container compare-cards">
-     { selectedCards }
-     { createCompareCard() } 
+      { selectedCards }
+      { createCompareCard() } 
     </div>
   );
-}
+};
 
 Compare.propTypes = {
   compareCards: PropTypes.arrayOf(PropTypes.object).isRequired,

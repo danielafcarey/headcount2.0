@@ -8,13 +8,16 @@ const CardContainer = ({ repo, addCompareCard, removeCompareCard }) => {
     const title = Object.keys(district)[0];
     const listOfData = Object.values(district)[0];
 
-    return <Card title={ title }
-                 listOfData={ listOfData }
-                 addCompareCard={ addCompareCard } 
-                 removeCompareCard={ removeCompareCard }
-                 selected={ district.selected }
-                 key={ `Card${index}` }
-           />;
+    return (
+      <Card 
+        title={ title }
+        listOfData={ listOfData }
+        addCompareCard={ addCompareCard } 
+        removeCompareCard={ removeCompareCard }
+        selected={ district.selected }
+        key={ `Card${index}` }
+      />
+    );
   });
 
   return (
@@ -22,7 +25,7 @@ const CardContainer = ({ repo, addCompareCard, removeCompareCard }) => {
       { cardList }
     </div>
   );
-}
+};
 
 CardContainer.propTypes = {
   repo: PropTypes.arrayOf(PropTypes.object).isRequired,
