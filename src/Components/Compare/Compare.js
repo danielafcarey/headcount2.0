@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from '../Card/Card.js';
 import PropTypes from 'prop-types';
+import './Compare.css';
 
 const Compare = ({ compareCards, compareData, removeCompareCard }) => {
   const selectedCards = compareCards.map((district, index) => {
@@ -30,9 +31,9 @@ const Compare = ({ compareCards, compareData, removeCompareCard }) => {
 
       return (
         <div className="card compare-data">
-          <h3>{ district1Title }: { district1Average }</h3>
-          <h3>{ compared }</h3>
-          <h3>{ district2Title }: { district2Average }</h3>
+          <h3 className='compareDataDesign compareSpace font'>{ district1Title }: { district1Average }</h3>
+          <h3 className='compare font'>{ compared }</h3>
+          <h3 className='compareDataDesign font'>{ district2Title }: { district2Average }</h3>
         </div>
       );
     }

@@ -1,0 +1,35 @@
+.compare-data {
+  background: url('../Images/compareImage.jpg');
+    -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-width: 40%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    background-repeat: no-repeat;
+}
+
+.compareDataDesign {
+  text-align: right;
+  padding-right: 42px;
+  padding-top: 20px;
+  margin: 0;
+}
+
+.compare{
+  text-align: right;
+  padding-right: 139px;
+  padding-top: 20px;
+  margin: 0;
+}
+
+.compareSpace {
+  padding-top: 63px;
+}
+
+.font {
+  font-family: 'Press Start 2P';
+  font-size: small;
+}
