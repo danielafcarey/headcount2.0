@@ -8,12 +8,11 @@ const Search = ({ updateRepoInState }) => {
       <input 
         placeholder="Search for a district..."
         className="search"
-        onChange={ (e) => updateRepoInState(e.target.value) }
+        onChange={ (event) => updateRepoInState(event.target.value) }
       />
     </div>
   );
-
-}
+};
 
 Search.propTypes = {
   updateRepoInState: PropTypes.func.isRequired

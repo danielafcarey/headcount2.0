@@ -1,12 +1,10 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import App from './App';
-import PropTypes from 'prop-types';
 import renderer from 'react-test-renderer';
 import DistrictRepository from '../../helper.js';
-import data from '../../data/kindergartners_in_full_day_program.js';
-import CardContainer from '../CardContainer/CardContainer.js';
-const repoHelper = new DistrictRepository(data);
+import kinderData from '../../data/kindergartners_in_full_day_program.js';
+const repoHelper = new DistrictRepository(kinderData);
 
 describe('App', () => {
 
@@ -90,7 +88,7 @@ describe('App', () => {
       compared: 0.08
     };
 
-    app.setState({ compareCards: mockCompareCards })
+    app.setState({ compareCards: mockCompareCards });
     app.instance().getCompareData();
 
     expect(app.state('compareData')).toEqual(expectedCompareData);
@@ -116,7 +114,7 @@ describe('App', () => {
       }
     ];
 
-    app.instance().addCompareCard('AGUILAR REORGANIZED 6')
+    app.instance().addCompareCard('AGUILAR REORGANIZED 6');
 
     expect(app.state('compareCards')).toEqual(expectedCompareCards);
   });
@@ -154,12 +152,12 @@ describe('App', () => {
       }
     ];
 
-    app.setState({ compareCards: compareCardsInitialState })
+    app.setState({ compareCards: compareCardsInitialState });
 
     app.instance().removeCompareCard('AGUILAR REORGANIZED 6');
 
     expect(app.state('compareCards')).toEqual(expectedResult);
   });
 
-})
+});
 

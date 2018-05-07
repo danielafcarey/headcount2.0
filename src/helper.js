@@ -1,10 +1,10 @@
 export default class DistrictRepository {
-  constructor(data) {
-    this.stats = this.cleanData(data);
+  constructor(dataSet) {
+    this.stats = this.cleanData(dataSet);
   }
 
-  cleanData = (data) => {
-    return data.reduce((cleanData, dataObj) => {
+  cleanData = (dataSet) => {
+    return dataSet.reduce((cleanData, dataObj) => {
       const upperCaseLocation = dataObj.Location.toUpperCase();
 
       if (!cleanData[upperCaseLocation]) {
@@ -19,14 +19,17 @@ export default class DistrictRepository {
       }
 
       const newDataObj = { [dataObj.TimeFrame]: dataNum };
-      cleanData[upperCaseLocation] = [...cleanData[upperCaseLocation], newDataObj];
+      cleanData[upperCaseLocation] = [
+        ...cleanData[upperCaseLocation], 
+        newDataObj
+      ];
 
       return cleanData;
     }, {});
   }
 
   findByName = (district) => {
-    if(!district) {
+    if (!district) {
       return undefined;
     }
 
@@ -35,31 +38,36 @@ export default class DistrictRepository {
       return undefined;
     } 
 
-    const dataObj = Object.assign({}, ...this.stats[upperCaseDistrict].map(data => data));
+    const dataObj = Object.assign({}, 
+      ...this.stats[upperCaseDistrict].map(districtObj => districtObj)
+    );
     return Object.assign({}, {stats: dataObj, location: upperCaseDistrict}); 
   }
 
   findAllMatches = (userInput) => {
     const statsKeys = Object.keys(this.stats);
     const allDistrictData = statsKeys.map(district => {
-      return { [district]: this.stats[district], 
-                selected: false         
-      }
+      return { 
+        [district]: this.stats[district], 
+        selected: false         
+      };
     });
 
     if (!userInput) {
       return allDistrictData; 
     } else {
       const upperCaseDistrict = userInput.toUpperCase();
-      return allDistrictData.filter(districtObj => Object.keys(districtObj)[0].includes(upperCaseDistrict));
+      return allDistrictData.filter(districtObj => {
+        return Object.keys(districtObj)[0].includes(upperCaseDistrict);
+      });
     }
 
   }
 
   findAverage = (district) => {
     const districtData = this.findByName(district); 
-    const dataValues = Object.values(districtData.stats)
-    const dataSum = dataValues.reduce((dataSum, num) => dataSum + num, 0)
+    const dataValues = Object.values(districtData.stats);
+    const dataSum = dataValues.reduce((dataSum, num) => dataSum + num, 0);
     const average = parseFloat((dataSum / dataValues.length).toFixed(3));
 
     return average; 
@@ -68,13 +76,15 @@ export default class DistrictRepository {
   compareDistrictAverages = (district1, district2) => {
     const district1Average = this.findAverage(district1);
     const district2Average = this.findAverage(district2);
-    const compared = parseFloat((district1Average / district2Average).toFixed(3));
+    const compared = parseFloat(
+      (district1Average / district2Average).toFixed(3)
+    );
 
-    return { [district1.toUpperCase()]: district1Average,
-             [district2.toUpperCase()]: district2Average,
-             compared
-           }
-
+    return { 
+      [district1.toUpperCase()]: district1Average,
+      [district2.toUpperCase()]: district2Average,
+      compared
+    };
   }
 }
 
