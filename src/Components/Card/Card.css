@@ -1,8 +1,8 @@
 ul {
+  padding: 0;
   list-style-type: none;
   list-style-position: outside;
   text-align: center;
-  padding: 0;
 }
 
 .card {
@@ -17,11 +17,11 @@ ul {
 
 .title {
   font-family: 'Bangers', cursive;
+  font-size: x-large;
   letter-spacing:3px;
   color: Orange;
   padding-left: 7px;
   padding-right: 7px;
-  font-size: x-large;
   text-shadow: 2px 2px 5px black;
 }
 
@@ -41,5 +41,5 @@ ul {
 }
 
 .selected {
-   box-shadow: 0 0 80px purple;
+  box-shadow: 0 0 80px purple;
 }
